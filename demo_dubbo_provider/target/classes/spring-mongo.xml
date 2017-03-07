@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/data/mongo
+    http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--<mongo:mongo host="60.205.7.102" port="27017" />-->
+    <!--&lt;!&ndash;<mongo:mongo host="60.205.7.102" port="27017" />&ndash;&gt;-->
+    <!--<mongo:db-factory dbname="im" mongo-ref="mongo" id="DbFactory"/>-->
+
+    <!--<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">-->
+    <!--<constructor-arg name="mongoDbFactory" ref="DbFactory" />-->
+    <!--</bean>-->
+    <mongo:db-factory id="mongoDbFactory"
+                      host="${mongo.host}"
+                      port="${mongo.port}"
+                      dbname="${mongo.dbname}"/>
+    <!--username="${mongo.username}"-->
+    <!--password="${database.password}"/>-->
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+    </bean>
+
+    <bean id="mongoUserDao" class="com.py.demo.tool.mongo.impl.MongoUserDao">
+    </bean>
+    <!--<bean id="userRepository" class="com.py.demo.tool.mongo.impl.UserRepository">-->
+    <!--<property name="mongoTemplate" ref="mongoTemplate" />-->
+    <!--</bean>-->
+    <!--<context:annotation-config />-->
+
+
+</beans>

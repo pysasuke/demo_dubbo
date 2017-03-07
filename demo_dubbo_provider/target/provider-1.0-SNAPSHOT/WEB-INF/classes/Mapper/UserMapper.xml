@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.py.demo.dao.UserMapper">
+
+    <insert id="insert" parameterType="com.py.demo.model.User" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into admin (username,password,create_time,update_time,email)VALUES ( #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},now(),now(),#{email,jdbcType=VARCHAR})
+    </insert>
+    <select id="getById" resultType="com.py.demo.model.User">
+        select id,username,password,email from admin where id=#{id,jdbcType=BIGINT}
+    </select>
+    <select id="getByUsername" resultType="com.py.demo.model.User">
+        select id,username,password,email from admin where username=#{username,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
